@@ -94,10 +94,27 @@ jobs:
         run: |
           cd code/friendlywrt/package/base-files/files
           mkdir -p etc/openclash/core
-          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.1.0/clash-linux-armv8-v1.1.0.gz | gunzip -c > etc/openclash/core/clash
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv7-2020.09.05.gaf1a58d.gz | gunzip -c > etc/openclash/core/clash_tun
+          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.2.0/clash-linux-armv8-v1.2.0.gz | gunzip -c > etc/openclash/core/clash
+          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv7-2020.10.13.gd3de533.gz | gunzip -c > etc/openclash/core/clash_tun
           wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv7.tar.gz | tar xOvz > etc/openclash/core/clash_game
           chmod +x etc/openclash/core/clash*
+      
+      - name: Install PassWall
+        run: |
+          cd code/friendlywrt/package
+          echo -e '\nsrc-git lienol https://github.com/xiaorouji/openwrt-package' >> feeds.conf.default
+          ./scripts/feeds update -a
+          rm -rf feeds/lienol/lienol/ipt2socks
+          rm -rf feeds/lienol/lienol/shadowsocksr-libev
+          rm -rf feeds/lienol/lienol/pdnsd-alt
+          rm -rf feeds/lienol/lienol/luci-app-verysync
+          rm -rf feeds/lienol/package/verysync
+          rm -rf feeds/lienol/package/chinadns-ng
+          rm -rf package/lean/luci-app-kodexplorer
+          rm -rf package/lean/luci-app-pppoe-relay
+          rm -rf package/lean/luci-app-pptp-server
+          rm -rf package/lean/luci-app-v2ray-server
+          ./scripts/feeds install -a 
 
       - name: Update Target.mk
         run: |
