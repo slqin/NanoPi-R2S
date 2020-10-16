@@ -101,7 +101,7 @@ jobs:
       
       - name: Install PassWall
         run: |
-          cd code/friendlywrt/package
+          cd code/friendlywrt
           echo -e '\nsrc-git lienol https://github.com/xiaorouji/openwrt-package' >> feeds.conf.default
           ./scripts/feeds update -a
           rm -rf feeds/lienol/lienol/ipt2socks
