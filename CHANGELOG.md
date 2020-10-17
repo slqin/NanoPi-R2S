@@ -1,6 +1,6 @@
 ## 20201016
 * Clash 更新到 v1.2.0
-* 添加 PassWall
+~~添加 PassWall~~
 
 ## 20200909
 * 更新 SmartDNS
